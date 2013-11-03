@@ -207,7 +207,7 @@ function play(str) {
 		}
 	}
 	
-	setTimeout(function(){switchBoard(nboard)}, animationTime);
+	setTimeout(function(){switchBoard(nboard)}, animationTime-20);
 }
 
 function switchBoard(b) {
