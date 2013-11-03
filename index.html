@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Abalone</title>
+</head>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript"src="config.js"></script>
+<script type="text/javascript"src="functions.js"></script>
+
+<style>
+	#board {width: 600px; height: 523px; margin: auto;background-image: url("img/board.png");text-align: left;}
+	.row { position: relative; width: 100%; height: 46px; top: 54px;left: 0;}
+	.row div {position: relative; width: 48px; height: 48px;top: 0; display: inline-block;padding: 0; margin-right: 2px;margin-top: 3px;text-align: center; vertical-align: middle;}
+	.r1 {left: 168px;}
+	.r2 {left: 141px;}
+	.r3 {left: 115px;}
+	.r4 {left: 87px;}
+	.r5 {left: 61px;}
+	.black {background-image: url("img/billeN.png");}
+	.white {background-image: url("img/billeB.png");}
+
+	#submit_box{width: 76px; height: 76px; margin:auto;}
+	#footer{width: 100%; text-align: center; font-size: 20px; font-family: "verdana";}
+	#restart{color: #0033ee; cursor: pointer;}
+	#log{position:absolute; top:5px; left: 5px; width: 150px; height: 600px; }
+</style>
+
+<body>
+	<div id="board">
+		<div class='row'>
+			<div id='00' title='00' class='r1'></div>
+			<div id='01' title='01' class='r1'></div>
+			<div id='02' title='02' class='r1'></div>
+			<div id='03' title='03' class='r1'></div>
+			<div id='04' title='04' class='r1'></div>
+		</div>
+		<div class='row'>
+			<div id='10' title='10' class='r2'></div>
+			<div id='11' title='11' class='r2'></div>
+			<div id='12' title='12' class='r2'></div>
+			<div id='13' title='13' class='r2'></div>
+			<div id='14' title='14' class='r2'></div>
+			<div id='15' title='15' class='r2'></div>
+		</div>
+		<div class='row'>
+			<div id='20' title='20' class='r3'></div>
+			<div id='21' title='21' class='r3'></div>
+			<div id='22' title='22' class='r3'></div>
+			<div id='23' title='23' class='r3'></div>
+			<div id='24' title='24' class='r3'></div>
+			<div id='25' title='25' class='r3'></div>
+			<div id='26' title='26' class='r3'></div>
+		</div>
+		<div class='row'>
+			<div id='30' title='30' class='r4'></div>
+			<div id='31' title='31' class='r4'></div>
+			<div id='32' title='32' class='r4'></div>
+			<div id='33' title='33' class='r4'></div>
+			<div id='34' title='34' class='r4'></div>
+			<div id='35' title='35' class='r4'></div>
+			<div id='36' title='36' class='r4'></div>
+			<div id='37' title='37' class='r4'></div>
+		</div>
+		<div class='row'>
+			<div id='40' title='40' class='r5'></div>
+			<div id='41' title='41' class='r5'></div>
+			<div id='42' title='42' class='r5'></div>
+			<div id='43' title='43' class='r5'></div>
+			<div id='44' title='44' class='r5'></div>
+			<div id='45' title='45' class='r5'></div>
+			<div id='46' title='46' class='r5'></div>
+			<div id='47' title='47' class='r5'></div>
+			<div id='48' title='48' class='r5'></div>
+		</div>
+		<div class='row'>
+			<div id='50' title='50' class='r4'></div>
+			<div id='51' title='51' class='r4'></div>
+			<div id='52' title='52' class='r4'></div>
+			<div id='53' title='53' class='r4'></div>
+			<div id='54' title='54' class='r4'></div>
+			<div id='55' title='55' class='r4'></div>
+			<div id='56' title='56' class='r4'></div>
+			<div id='57' title='57' class='r4'></div>
+		</div>
+		<div class='row'>
+			<div id='60' title='60' class='r3'></div>
+			<div id='61' title='61' class='r3'></div>
+			<div id='62' title='62' class='r3'></div>
+			<div id='63' title='63' class='r3'></div>
+			<div id='64' title='64' class='r3'></div>
+			<div id='65' title='65' class='r3'></div>
+			<div id='66' title='66' class='r3'></div>
+		</div>
+		<div class='row'>
+			<div id='70' title='70' class='r2'></div>
+			<div id='71' title='71' class='r2'></div>
+			<div id='72' title='72' class='r2'></div>
+			<div id='73' title='73' class='r2'></div>
+			<div id='74' title='74' class='r2'></div>
+			<div id='75' title='75' class='r2'></div>
+		</div>
+		<div class='row'>
+			<div id='80' title='80' class='r1'></div>
+			<div id='81' title='81' class='r1'></div>
+			<div id='82' title='82' class='r1'></div>
+			<div id='83' title='83' class='r1'></div>
+			<div id='84' title='84' class='r1'></div>
+		</div>
+	</div>
+
+	<div id="submit_box">
+		<img id="A5" src="img/A5.png" alt="UL" style="margin-left: 18px;">
+		<img id="A6" src="img/A6.png" alt="UR" style="margin-left: 2px;">
+		<br>
+		<img id="A4" src="img/A4.png" alt="L" style="">
+		<img id="A1" src="img/A1.png" alt="R" style="margin-left: 30px;">
+		<br>
+		<img id="A3" src="img/A3.png" alt="DL" style="margin-left: 18px;">
+		<img id="A2" src="img/A2.png" alt="DR" style="margin-left: 2px;">
+	</div>
+	<div id="footer">
+		<span id="score">B: 0             W: 0</span><br>
+		<span id="restart">Restart<span>
+	</div>
+	<textarea id="log"></textarea>
+</body>
+</html>
